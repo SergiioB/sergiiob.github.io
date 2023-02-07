@@ -108,23 +108,24 @@ background: '/img/posts/2023-01-06/portada.png'
 		sudo a2ensite mimakina.com.conf 
 		<br><br>sudo a2ensite miotramakina.com.conf 
 		<br><br>sudo a2dissite 000-default
-		<br><br>sudo systemctl reload apache2
+		<br><br>sudo systemctl reload apache2<br><br>
 	</code>
 	<h4>Reinicia los servicios de Apache y Bind con los siguientes comandos:</h4>
 	<code>
 		sudo service apache2 restart<br>
-		<br>sudo service bind9 restart
+		<br>sudo service bind9 restart<br><br>
 	</code>
 	<h4>Comprobar el estado de los dos servicios</h4>
+	<p>Si se ha configurado todo correctamente, los dos servicios mostraran <b>active (running)</b></p>
 	<code>
 		sudo service apache2 status<br><br>
-		sudo service bind9 status
+		sudo service bind9 status<br><br>
 	</code>
 	<h3>Por ultimo, modificar fichero resolv.conf</h3>
 	<code>
 		sudo nano /etc/resolv.conf
 	</code>
-		<img src="https://i.imgur.com/2l1nMEs.png"></img>
-	<h3>Comprobar como funciona</h3>
+		<img src="https://i.imgur.com/2l1nMEs.png"></img><br><br>
+	<h3>Comprobar funcionamiento</h3>
 	<img src="https://i.imgur.com/vWazzQB.png"></img>
 	<img src="https://i.imgur.com/R3nxUgz.png"></img>
