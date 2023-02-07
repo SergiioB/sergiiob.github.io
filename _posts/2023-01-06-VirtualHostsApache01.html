@@ -1,9 +1,9 @@
 ---
 layout: post
-title: "My new proyect"
+title: "Servidores Virtuales Apache + DNS"
 subtitle: "Prueba primer proyecto"
 date: 2023-01-06 23:45:13 -0400
-background: '/img/posts/05.jpg'
+background: '/img/posts/2023-01-06/portada.png'
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -12,16 +12,122 @@ background: '/img/posts/05.jpg'
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+	<style>
+		code {
+			font-family: Consolas,"courier new";
+			color: rgb(230, 14, 14);
+			background-color: #f1f1f1;
+			padding: 2px;
+			font-size: 105%;
+		}
+		img {
+			padding-top: 5px;
+		}
+	</style>
 </head>
 <body>
 	<h1> Servidores Virtuales / Virtual Hosts </h1>
 	<h3> Objetivo</h3>
 	<p> En una máquina, instala:
 	<ol>
-		<li>1-Un servidor DNS</li>
-		<li>2-Un servidor Apache</li>
+		<li>Un servidor DNS</li>
+		<li>Un servidor Apache</li>
 	</ol>
 	<p>Lo configuramos de forma que si pongo en el navegador www.mimakina.com llegaré a una página en la que me dirá "Bienvenido a mimakina.com", y si pongo www.miotramakina.com, llegaré a una página en la que me dirá "Bienvenido a miotramakina.com"
-	<h3> Instalar Servidor DNS</h3>    
+	<h3> Instalar Servidor DNS</h3>
+		<p>Establecer ip estática al servidor</p>
+		<img src="../img/posts/2023-01-06/network-manager.png"></img>
+		<br>
+		<br>
+		<p>Actualizar lista de paquetes</p>
+		<code>sudo apt update</code>
+		<p>Instalar paquete DNS</p>
+		<code>sudo apt-get install bind9 -y </code>
+		<p>Configurar las dos zonas en el fichero de configuracion <i>/etc/bind/named.conf.local</i></p>
+		<img src="../img/posts/2023-01-06/02.png"></img>
+		<p>Crea dos archivos de configuración adicionales en la carpeta <i>"/etc/bind/"</i> llamados <i>"db.mimakina.com"</i> y <i>"db.miotramakina.com"</i> con el siguiente contenido en cada uno:</p>
+		<p>Vamos a partir de la copia de un fichero que ya existe para que sea más fácil su creación:</p>
+		<img src="../img/posts/2023-01-06/03.png"></img>
+		<p> El fichero <i>/etc/bind/db.mimakina.com</i> tendrá un aspecto asi:</p>
+		<img src="../img/posts/2023-01-06/04.png"></img>
+		<p>El fichero db.miotramakina.com asi:</p>
+		<img src="../img/posts/2023-01-06/05.png"></img>
+		<p>Comprobar que todo funciona correctamente y que el servidor DNS está activo.</p>
+		<code>sudo systemctl status bind9</code>
+		<p>o bien</p>
+		<code> sudo service bind9 status</code><br><br>
+		<img src="../img/posts/2023-01-06/06.png"></img>
+		<p>Debe mostrar:</p>
+		<p style="color: rgb(11, 192, 11);"><b>active (running)</b></p>
+	<h3>Instalar servidor apache</h3>
+	<p>Instalar paquete necesario</p>
+	<code>sudo apt-get install apache2 -y</code>
+	<p>Crear dos archivos de configuración virtual host para Apache en la carpeta <i>"/etc/apache2/sites-available"</i> o en <i>"/etc/httpd/conf.d"</i> dependiendo de tu sistema operativo</p>
+	<ul>
+		<li>Crea un archivo llamado "mimakina.com.conf" con el siguiente contenido:</li>
+		<br><code>sudo nano /etc/apache2/sites-available/mimakina.com.conf</code>
+		<p>Quedaria con este aspecto:</p>
+		<code>
+			&lt;VirtualHost *:80&gt;<br>
+			ServerName mimakina.com<br>
+			ServerAdmin webmaster@ntmakina.com<br>
+			DocumentRoot /var/www/mimakina.com<br>
+			ErrorLog ${APACHE_LOG_DIR}/error.log<br>
+			CustomLog ${APACHE_LOG_DIR}/access.log combined<br>
+			&lt;/VirtualHost&gt;
+		</code>
+		<img src="../img/posts/2023-01-06/07.png"></img><br><br>
+		<li>Crea otro archivo llamado "miotramakina.com.conf" con el siguiente contenido:</li>
+		<br><code>sudo nano /etc/apache2/sites-available/miotramakina.com.conf</code>
+		<p>Quedaria con este aspecto:</p>
+		<code>
+			&lt;VirtualHost *:80&gt;<br>
+			ServerName miotramakina.com<br>
+			ServerAdmin webmaster@miotramakina.com<br>
+			DocumentRoot /var/www/miotramakina.com<br>
+			ErrorLog ${APACHE_LOG_DIR}/error.log<br>
+			CustomLog ${APACHE_LOG_DIR}/access.log combined<br>
+			&lt;/VirtualHost&gt;
+		</code>
+		<img src="../img/posts/2023-01-06/08.png"></img>
+	</ul>
+	<p>Crea dos carpetas en "/var/www" llamadas "mimakina.com" y "miotramakina.com" y crea un archivo index.html en cada una con el siguiente contenido respectivamente</p>
+	<br>
+	<code> sudo mkdir /var/www/mimakina.com </code><br>
+	<code> sudo mkdir /var/www/miotramakina.com </code><br>
+	<code> sudo touch /var/www/mimakina.com/index.html </code><br>
+	<code> sudo touch /var/www/miotramakina.com/index.html </code><br>
+	<p>Editar los dos ficheros index:
+		<img src="../img/posts/2023-01-06/09.png"></img>
+		<img src="../img/posts/2023-01-06/10.png"></img>
+	</p>
+	<h4>Activar configuracion apache</h4>
+	<code>sudo sysetmctl restart bind9</code>
+	<h4>Activar los virtual host, desactivar el virtualhost por defecto</h4>
+	<code>
+		sudo a2ensite mimakina.com.conf 
+		<br><br>sudo a2ensite miotramakina.com.conf 
+		<br><br>sudo a2dissite 000-default
+		<br><br>sudo systemctl reload apache2
+	</code>
+	<h4>Reinicia los servicios de Apache y Bind con los siguientes comandos:</h4>
+	<code>
+		sudo service apache2 restart<br>
+		<br>sudo service bind9 restart
+	</code>
+	<h4>Comprobar el estado de los dos servicios</h4>
+	<code>
+		sudo service apache2 status<br><br>
+		sudo service bind9 status
+	</code>
+	<h3>Por ultimo, modificar fichero resolv.conf</h3>
+	<code>
+		sudo nano /etc/resolv.conf
+	</code>
+		<img src="../img/posts/2023-01-06/11.png"></img>
+	<h3>Comprobar como funciona</h3>
+	<img src="../img/posts/2023-01-06/12.png"></img>
+	<img src="../img/posts/2023-01-06/13.png"></img>
 </body>
 </html>
+
