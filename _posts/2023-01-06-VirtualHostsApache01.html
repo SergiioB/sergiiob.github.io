@@ -44,20 +44,19 @@ background: '/img/posts/2023-01-06/portada.png'
 		<p>Instalar paquete DNS</p>
 		<code>sudo apt-get install bind9 -y </code>
 		<p>Configurar las dos zonas en el fichero de configuracion <i>/etc/bind/named.conf.local</i></p>
-		<img src="https://s3.us-west-2.amazonaws.com/images.unsplash.com/application-1675799135650-976bfcf864a8image"></img>
+		<img src="https://s3.us-west-2.amazonaws.com/images.unsplash.com/application-1675802990286-c9497f082f94image"></img>
 		<p>Crea dos archivos de configuración adicionales en la carpeta <i>"/etc/bind/"</i> llamados <i>"db.mimakina.com"</i> y <i>"db.miotramakina.com"</i> con el siguiente contenido en cada uno:</p>
 		<p>Vamos a partir de la copia de un fichero que ya existe para que sea más fácil su creación:</p>
-		<img src="https://imgur.com/4ic0E5w"></img>
-		<blockquote class="imgur-embed-pub" lang="en" data-id="4ic0E5w"><a href="https://imgur.com/4ic0E5w">View post on imgur.com</a></blockquote><script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>
+		<img src="https://s3.us-west-2.amazonaws.com/images.unsplash.com/application-1675803059054-d65a3e6ca2b1image"></img>
 		<p> El fichero <i>/etc/bind/db.mimakina.com</i> tendrá un aspecto asi:</p>
-		<img src="./img/posts/2023-01-06/04.png"></img>
+		<img src="https://s3.us-west-2.amazonaws.com/images.unsplash.com/application-1675803138286-bf8987722b04image"></img>
 		<p>El fichero db.miotramakina.com asi:</p>
-		<img src="./img/posts/2023-01-06/05.png"></img>
+		<img src="https://s3.us-west-2.amazonaws.com/images.unsplash.com/application-1675803148231-d6049d038849image"></img>
 		<p>Comprobar que todo funciona correctamente y que el servidor DNS está activo.</p>
 		<code>sudo systemctl status bind9</code>
 		<p>o bien</p>
 		<code> sudo service bind9 status</code><br><br>
-		<img src="./img/posts/2023-01-06/06.png"></img>
+		<img src="https://s3.us-west-2.amazonaws.com/images.unsplash.com/application-1675803154910-25f067df3d4aimage"></img>
 		<p>Debe mostrar:</p>
 		<p style="color: rgb(11, 192, 11);"><b>active (running)</b></p>
 	<h3>Instalar servidor apache</h3>
@@ -77,7 +76,7 @@ background: '/img/posts/2023-01-06/portada.png'
 			CustomLog ${APACHE_LOG_DIR}/access.log combined<br>
 			&lt;/VirtualHost&gt;
 		</code>
-		<img src="./img/posts/2023-01-06/07.png"></img><br><br>
+		<img src="https://s3.us-west-2.amazonaws.com/images.unsplash.com/application-1675803192491-bb6361160c4fimage"></img><br><br>
 		<li>Crea otro archivo llamado "miotramakina.com.conf" con el siguiente contenido:</li>
 		<br><code>sudo nano /etc/apache2/sites-available/miotramakina.com.conf</code>
 		<p>Quedaria con este aspecto:</p>
@@ -100,6 +99,7 @@ background: '/img/posts/2023-01-06/portada.png'
 	<code> sudo touch /var/www/miotramakina.com/index.html </code><br>
 	<p>Editar los dos ficheros index:
 		<img src="./img/posts/2023-01-06/09.png"></img>
+		<a href="https://freeimage.host/i/HE3scYl"><img src="https://iili.io/HE3scYl.md.jpg" alt="HE3scYl.md.jpg" border="0"></a>
 		<img src="./img/posts/2023-01-06/10.png"></img>
 	</p>
 	<h4>Activar configuracion apache</h4>
