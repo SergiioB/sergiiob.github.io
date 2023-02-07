@@ -23,6 +23,10 @@ background: '/img/posts/2023-01-06/portada.png'
 		img {
 			padding-top: 5px;
 		}
+		code {
+			padding-top: 5px;
+			padding-bottom: 5px;
+		}
 	</style>
 </head>
 <body>
@@ -55,7 +59,7 @@ background: '/img/posts/2023-01-06/portada.png'
 		<p>Comprobar que todo funciona correctamente y que el servidor DNS está activo.</p>
 		<code>sudo systemctl status bind9</code>
 		<p>o bien</p>
-		<code> sudo service bind9 status</code><br><br>
+		<code> sudo service bind9 status</code>
 		<img src="https://i.imgur.com/FEQIFHJ.png"></img>
 		<p>Debe mostrar:</p>
 		<p style="color: rgb(11, 192, 11);"><b>active (running)</b></p>
@@ -65,7 +69,7 @@ background: '/img/posts/2023-01-06/portada.png'
 	<p>Crear dos archivos de configuración virtual host para Apache en la carpeta <i>"/etc/apache2/sites-available"</i> o en <i>"/etc/httpd/conf.d"</i> dependiendo de tu sistema operativo</p>
 	<ul>
 		<li>Crea un archivo llamado "mimakina.com.conf" con el siguiente contenido:</li>
-		<br><code>sudo nano /etc/apache2/sites-available/mimakina.com.conf</code>
+		<code>sudo nano /etc/apache2/sites-available/mimakina.com.conf</code>
 		<p>Quedaria con este aspecto:</p>
 		<code>
 			&lt;VirtualHost *:80&gt;<br>
@@ -75,8 +79,8 @@ background: '/img/posts/2023-01-06/portada.png'
 			ErrorLog ${APACHE_LOG_DIR}/error.log<br>
 			CustomLog ${APACHE_LOG_DIR}/access.log combined<br>
 			&lt;/VirtualHost&gt;
-		</code>
-		<img src="https://i.imgur.com/FHsYTdG.png"></img><br><br>
+		</code><br>
+		<img src="https://i.imgur.com/FHsYTdG.png"></img>
 		<li>Crea otro archivo llamado "miotramakina.com.conf" con el siguiente contenido:</li>
 		<br><code>sudo nano /etc/apache2/sites-available/miotramakina.com.conf</code>
 		<p>Quedaria con este aspecto:</p>
@@ -89,43 +93,42 @@ background: '/img/posts/2023-01-06/portada.png'
 			CustomLog ${APACHE_LOG_DIR}/access.log combined<br>
 			&lt;/VirtualHost&gt;
 		</code>
-		<img src="https://i.imgur.com/MnrdvHE.png"></img>
+		<img src="https://i.imgur.com/MnrdvHE.png">
 	</ul>
 	<p>Crea dos carpetas en "/var/www" llamadas "mimakina.com" y "miotramakina.com" y crea un archivo index.html en cada una con el siguiente contenido respectivamente</p>
-	<br>
 	<code> sudo mkdir /var/www/mimakina.com </code><br>
 	<code> sudo mkdir /var/www/miotramakina.com </code><br>
 	<code> sudo touch /var/www/mimakina.com/index.html </code><br>
 	<code> sudo touch /var/www/miotramakina.com/index.html </code><br>
 	<p>Editar los dos ficheros index:
-		<img src="https://i.imgur.com/Wtazj0s.png"></img>
-		<img src="https://i.imgur.com/9wP7lTr.png"></img>
+		<img src="https://i.imgur.com/Wtazj0s.png">
+		<img src="https://i.imgur.com/9wP7lTr.png">
 	</p>
 	<h4>Activar configuracion apache</h4>
 	<code>sudo sysetmctl restart bind9</code>
 	<h4>Activar los virtual host, desactivar el virtualhost por defecto</h4>
 	<code>
 		sudo a2ensite mimakina.com.conf 
-		<br><br>sudo a2ensite miotramakina.com.conf 
-		<br><br>sudo a2dissite 000-default
-		<br><br>sudo systemctl reload apache2<br><br>
+		<br>sudo a2ensite miotramakina.com.conf 
+		<br>sudo a2dissite 000-default
+		<br>sudo systemctl reload apache2
 	</code>
 	<h4>Reinicia los servicios de Apache y Bind con los siguientes comandos:</h4>
 	<code>
 		sudo service apache2 restart<br>
-		<br>sudo service bind9 restart<br><br>
+		<br>sudo service bind9 restart
 	</code>
 	<h4>Comprobar el estado de los dos servicios</h4>
 	<p>Si se ha configurado todo correctamente, los dos servicios mostraran <b>active (running)</b></p>
 	<code>
-		sudo service apache2 status<br><br>
-		sudo service bind9 status<br><br>
+		sudo service apache2 status<br>
+		sudo service bind9 status<br>
 	</code>
 	<h3>Por ultimo, modificar fichero resolv.conf</h3>
 	<code>
 		sudo nano /etc/resolv.conf
 	</code>
-		<img src="https://i.imgur.com/2l1nMEs.png"></img><br><br>
+		<img src="https://i.imgur.com/2l1nMEs.png">
 	<h3>Comprobar funcionamiento</h3>
-	<img src="https://i.imgur.com/vWazzQB.png"></img>
-	<img src="https://i.imgur.com/R3nxUgz.png"></img>
+	<img src="https://i.imgur.com/vWazzQB.png">
+	<img src="https://i.imgur.com/R3nxUgz.png">
