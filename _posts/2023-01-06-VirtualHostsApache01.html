@@ -36,7 +36,7 @@ background: '/img/posts/2023-01-06/portada.png'
 	<p>Lo configuramos de forma que si pongo en el navegador www.mimakina.com llegaré a una página en la que me dirá "Bienvenido a mimakina.com", y si pongo www.miotramakina.com, llegaré a una página en la que me dirá "Bienvenido a miotramakina.com"
 	<h3> Instalar Servidor DNS</h3>
 		<p>Establecer ip estática al servidor</p>
-		<img src="../img/posts/2023-01-06/network-manager.png"></img>
+		<img src="./img/posts/2023-01-06/network-manager.png"></img>
 		<br>
 		<br>
 		<p>Actualizar lista de paquetes</p>
@@ -44,19 +44,19 @@ background: '/img/posts/2023-01-06/portada.png'
 		<p>Instalar paquete DNS</p>
 		<code>sudo apt-get install bind9 -y </code>
 		<p>Configurar las dos zonas en el fichero de configuracion <i>/etc/bind/named.conf.local</i></p>
-		<img src="./../img/posts/2023-01-06/02.png"></img>
+		<img src="./img/posts/2023-01-06/02.png"></img>
 		<p>Crea dos archivos de configuración adicionales en la carpeta <i>"/etc/bind/"</i> llamados <i>"db.mimakina.com"</i> y <i>"db.miotramakina.com"</i> con el siguiente contenido en cada uno:</p>
 		<p>Vamos a partir de la copia de un fichero que ya existe para que sea más fácil su creación:</p>
-		<img src="../img/posts/2023-01-06/03.png"></img>
+		<img src="./img/posts/2023-01-06/03.png"></img>
 		<p> El fichero <i>/etc/bind/db.mimakina.com</i> tendrá un aspecto asi:</p>
-		<img src="../img/posts/2023-01-06/04.png"></img>
+		<img src="./img/posts/2023-01-06/04.png"></img>
 		<p>El fichero db.miotramakina.com asi:</p>
-		<img src="../img/posts/2023-01-06/05.png"></img>
+		<img src="./img/posts/2023-01-06/05.png"></img>
 		<p>Comprobar que todo funciona correctamente y que el servidor DNS está activo.</p>
 		<code>sudo systemctl status bind9</code>
 		<p>o bien</p>
 		<code> sudo service bind9 status</code><br><br>
-		<img src="../img/posts/2023-01-06/06.png"></img>
+		<img src="./img/posts/2023-01-06/06.png"></img>
 		<p>Debe mostrar:</p>
 		<p style="color: rgb(11, 192, 11);"><b>active (running)</b></p>
 	<h3>Instalar servidor apache</h3>
@@ -76,7 +76,7 @@ background: '/img/posts/2023-01-06/portada.png'
 			CustomLog ${APACHE_LOG_DIR}/access.log combined<br>
 			&lt;/VirtualHost&gt;
 		</code>
-		<img src="../img/posts/2023-01-06/07.png"></img><br><br>
+		<img src="./img/posts/2023-01-06/07.png"></img><br><br>
 		<li>Crea otro archivo llamado "miotramakina.com.conf" con el siguiente contenido:</li>
 		<br><code>sudo nano /etc/apache2/sites-available/miotramakina.com.conf</code>
 		<p>Quedaria con este aspecto:</p>
@@ -89,7 +89,7 @@ background: '/img/posts/2023-01-06/portada.png'
 			CustomLog ${APACHE_LOG_DIR}/access.log combined<br>
 			&lt;/VirtualHost&gt;
 		</code>
-		<img src="../img/posts/2023-01-06/08.png"></img>
+		<img src="./img/posts/2023-01-06/08.png"></img>
 	</ul>
 	<p>Crea dos carpetas en "/var/www" llamadas "mimakina.com" y "miotramakina.com" y crea un archivo index.html en cada una con el siguiente contenido respectivamente</p>
 	<br>
@@ -98,8 +98,8 @@ background: '/img/posts/2023-01-06/portada.png'
 	<code> sudo touch /var/www/mimakina.com/index.html </code><br>
 	<code> sudo touch /var/www/miotramakina.com/index.html </code><br>
 	<p>Editar los dos ficheros index:
-		<img src="../img/posts/2023-01-06/09.png"></img>
-		<img src="../img/posts/2023-01-06/10.png"></img>
+		<img src="./img/posts/2023-01-06/09.png"></img>
+		<img src="./img/posts/2023-01-06/10.png"></img>
 	</p>
 	<h4>Activar configuracion apache</h4>
 	<code>sudo sysetmctl restart bind9</code>
@@ -124,7 +124,7 @@ background: '/img/posts/2023-01-06/portada.png'
 	<code>
 		sudo nano /etc/resolv.conf
 	</code>
-		<img src="../img/posts/2023-01-06/11.png"></img>
+		<img src="./img/posts/2023-01-06/11.png"></img>
 	<h3>Comprobar como funciona</h3>
-	<img src="../img/posts/2023-01-06/12.png"></img>
-	<img src="../img/posts/2023-01-06/13.png"></img>
+	<img src="./img/posts/2023-01-06/12.png"></img>
+	<img src="./img/posts/2023-01-06/13.png"></img>
