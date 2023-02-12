@@ -1,0 +1,64 @@
+---
+layout: post
+title: "Instalación servidor de correo Postfix(SMTP)"
+subtitle: "Vamos a ver paso a paso la instalacion del servidor de correo Postfix"
+date: 2023-02-12 23:45:13 -0400
+background: '/img/banner.jpg'
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Sergio Barrientos portfolio site | </title>
+	<meta name="description" content="Sergio Barrientos es un estudiante de ASIR con amplios conocimientos en administracion de sistemas,
+	administracion de bases de datos y administracion de redes, asi como lenguajes de programación como PHP,JavaScript o Python">
+	<style>
+		code {
+			font-family: Consolas,"courier new";
+			color: rgb(230, 14, 14);
+			background-color: #f1f1f1;
+			padding: 2px;
+			font-size: 105%;
+		}
+		img {
+			padding-top: 5px;
+		}
+		code {
+			padding-top: 5px;
+			padding-bottom: 5px;
+		}
+		h3,h1,h4{
+			padding-top: 8px;	
+		}
+	</style>
+</head>
+<body>
+	<h1>Instalacion de Postfix (STMP)</h1>
+	<h2>1-Instalar paquete necesario</h2>
+	<p>Le pasamos la variable entorno DEBIAN_PRIORITY=low . Esto va a causar que el proceso de instalación nos pida algunas opciones adicionales.
+		Then install the postfix package with the following command. Note that here we pass the DEBIAN_PRIORITY=low environmental variable into this installation command. This will cause the installation process to prompt you to configure some additional options:
+		</p>
+	<code>sudo DEBIAN_PRIORITY=low apt install postfix</code>
+	<h2>2-Configuracion</h2>
+	<ul>
+		<li><b>Tipo de servidor:</b> Elegir <u>Sitio de internet</u>.El correo se envia y se recibe directamente utilizando SMTP</li>
+		<li><b>Nombre del sistema de correo:</b> Pongamos que el nombre del servidor es mail.ejemplo.com. Seguramente querrás establecer como nombre del sistema de correo ejemplo.com, para que, para el usuario user1,
+			  Postfix va a usar la dirección user1@ejemplo.com
+
+		</li>
+		<li><b>Recipiente de correo para el administrador y postmaster</b>
+			Esta es la cuenta de linux a la que se le van a reeenviar los correos enviados a root@ y postmaster@.
+			 Usa tu cuenta primaria para ello, en este caso, serge.</li>
+		<li><b>Otros destinos para aceptar correo:</b> Esto define los destinos a los que Postfix va a aceptar. Si necesitas añadir cualquier otro dominio en este servidor al que el servidor se va a encargar de recibir, añadelos aqui.
+			Si no, por defecto es suficiente.
+			
+		</li>
+		<li><b>Forzar actualizaciones síncronas</b>Seguramente estes usando un 
+		sistema de sarchivos con jorunal, asi que, pulsa <b>NO</b></li>
+		<li></li>
+	</ul>
+
+</body>
+</html>
