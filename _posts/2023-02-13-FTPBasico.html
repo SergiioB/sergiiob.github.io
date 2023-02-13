@@ -14,9 +14,9 @@ background: '/img/banner.jpg'
 	<title>Sergio Barrientos portfolio site | </title>
 	<meta name="description" content="Sergio Barrientos es un estudiante de ASIR con amplios conocimientos en administracion de sistemas,
 	administracion de bases de datos y administracion de redes, asi como lenguajes de programación como PHP,JavaScript o Python">
-    <link rel="stylesheet" href="/_posts/styles.css"> 
+    <link rel="stylesheet" href="styles.css"> 
     <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
-    <script src="/_posts/script.js"></script>
+    <script src="script.js"></script>
 </head>
 <body>
 	<h1>Instalacion de FTP</h1>
@@ -26,10 +26,9 @@ background: '/img/banner.jpg'
     <code>sudo systemctl start vsftpd</code>
     <p>Comprobar el estado del servicio</p>
     <div class="container">
-        <div class="code" id="textToCopy">sudo systemctl status vsftpd</div>
-        <button class="btn" onclick="copyToClipboard()">Copy</button>
+        <div class="code" id="textToCopy">sudo systemctl status vsftpd
+            <input type="button" class="btn" value="Copy" onclick="copyToClipboard()"></div>
       </div>
-      <div id="copyStatus"></div>
     <code>sudo systemctl status vsftpd</code>
 	<h2>2-Configuracion</h2>
 	<ul>
