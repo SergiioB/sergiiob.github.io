@@ -1,0 +1,17 @@
+code {
+	font-family: Consolas,"courier new";
+	color: rgb(230, 14, 14);
+	background-color: #f1f1f1;
+	padding: 2px;
+	font-size: 105%;
+}
+img {
+	padding-top: 5px;
+}
+code {
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+h3,h1,h4{
+	padding-top: 8px;	
+}
