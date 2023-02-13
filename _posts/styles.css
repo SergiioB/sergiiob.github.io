@@ -19,7 +19,8 @@ h3,h1,h4{
 .container {
         display: flex;
         align-items: center;
-}
+        width: 100%;
+      }
 .code {
-        margin-right: 10px;
+     margin-right: 10px;
 }
