@@ -25,9 +25,11 @@ background: '/img/banner.jpg'
     <p>Iniciar el servicio</p>
     <code>sudo systemctl start vsftpd</code>
     <p>Comprobar el estado del servicio</p>
-    <div id="textToCopy">sudo systemctl status vsftpd</div>
-    <button class="btn" onclick="copyToClipboard()">Copy</button>
-    <div id="copyStatus"></div>
+    <div class="container">
+        <div class="code" id="textToCopy">sudo systemctl status vsftpd</div>
+        <button class="btn" onclick="copyToClipboard()">Copy</button>
+      </div>
+      <div id="copyStatus"></div>
     <code>sudo systemctl status vsftpd</code>
 	<h2>2-Configuracion</h2>
 	<ul>
