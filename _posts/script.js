@@ -8,8 +8,8 @@
       e.clearSelection();
       button.value = "Copied!";
       setTimeout(function() {
-        button.value = "Copy";
-      }, 3000);
+        button.value = "Copy 📋";
+      },5000);
     });
     clipboard.on('error', function(e) {
       console.error('Error copying text: ', e);
