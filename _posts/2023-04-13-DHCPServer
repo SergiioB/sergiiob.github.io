@@ -5,88 +5,86 @@ subtitle: "Deploying a DHCP Service on Debian"
 date: 2023-01-06 23:45:13 -0400
 background: '/img/posts/05.jpg'
 ---
-<h1>DEBIAN DHCP SERVER<h1>
-<p>First, install the necessary packages:</p>
+    <h1>DEBIAN DHCP SERVER</h1>
+    <p>First, install the necessary packages:
 
-<pre>
-<code>sudo apt update
-sudo apt install y isc-dhcp-server</code>
-</pre>
+    <pre>
+    <code>sudo apt update
+    sudo apt install y isc-dhcp-server</code>
+    </pre>
 
-<br>
+    <br>
 
-<p>Edit the configuration file:</p>
+    <p>Edit the configuration file:</p>
 
-<pre>
-<code>sudo nano /etc/dhcp/dhcpd.conf</code>
-</pre>
+    <pre>
+    <code>sudo nano /etc/dhcp/dhcpd.conf</code>
+    </pre>
 
-<br>
+    <br>
 
-<p>Start the DHCP server on the server (ESSENTIAL):</p>
+    <p>Start the DHCP server on the server (ESSENTIAL):</p>
 
-<pre>
-<code>service isc-dhcp-server start</code>
-</pre>
+    <pre>
+    <code>service isc-dhcp-server start</code>
+    </pre>
 
-<br>
+    <br>
 
-<p>Check the status of the DHCP server:</p>
+    <p>Check the status of the DHCP server:</p>
 
-<pre>
-<code>service isc-dhcp-server status</code>
-</pre>
+    <pre>
+    <code>service isc-dhcp-server status</code>
+    </pre>
 
-<br>
+    <br>
 
-<p>NOW ON THE WINDOWS CLIENTS:</p>
+    <p>NOW ON THE WINDOWS CLIENTS:</p>
 
-<br>
+    <br>
 
-<p>Set the clients to obtain IP addresses automatically and specify the DNS server as the IP address of the Linux server (not necessary for this exercise).</p>
+    <p>Set the clients to obtain IP addresses automatically and specify the DNS server as the IP address of the Linux server (not necessary for this exercise).</p>
 
-<br>
+    <br>
 
-<p>In client1, the IP address 192.168.100.5 will be assigned from the previously specified address range.</p>
+    <p>In client1, the IP address 192.168.100.5 will be assigned from the previously specified address range.</p>
 
-<br>
+    <br>
 
-<p>When running the command "service isc-dhcp-server status" on the server:</p>
+    <p>When running the command "service isc-dhcp-server status" on the server:</p>
 
-<br>
+    <br>
 
-<p>We can see the process where client1 requests the IP address from the server.</p>
+    <p>We can see the process where client1 requests the IP address from the server.</p>
 
-<br>
+    <br>
 
-<p>Client1 is now communicating with the server using the newly assigned IP address.</p>
+    <p>Client1 is now communicating with the server using the newly assigned IP address.</p>
 
-<br>
+    <br>
 
-<p>ON CLIENT 2:</p>
+    <p>ON CLIENT 2:</p>
 
-<br>
+    <br>
 
-<p>Client2 has been assigned the next available IP address (192.168.100.6).</p>
+    <p>Client2 has been assigned the next available IP address (192.168.100.6).</p>
 
-<br>
+    <br>
 
-<p>CONNECTIVITY TESTS:</p>
+    <p>CONNECTIVITY TESTS:</p>
 
-<br>
+    <br>
 
-<p>ADDITIONAL CAPTURE:</p>
+    <p>ADDITIONAL CAPTURE:</p>
 
-<br>
+    <br>
 
-<p>We can see that the DHCP service is running (active).</p>
+    <p>We can see that the DHCP service is running (active).</p>
 
-<br>
+    <br>
 
-<p>The configuration file is indicated by the purple arrow.</p>
+    <p>The configuration file is indicated by the purple arrow.</p>
 
-<br>
+    <br>
 
-<p>The communication process between the clients and the server involves exchanging REQUEST packets between the IP addresses of the clients (192.168.100.5, 192.168.100.6) and the server (192.168.100.1) as the destination.</p>
-
-
+    <p>The communication process between the clients and the server involves exchanging REQUEST packets between the IP addresses of the clients (192.168.100.5, 192.168.100.6) and the server (192.168.100.1) as the destination.</p>
