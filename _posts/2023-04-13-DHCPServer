@@ -5,51 +5,88 @@ subtitle: "Deploying a DHCP Service on Debian"
 date: 2023-01-06 23:45:13 -0400
 background: '/img/posts/05.jpg'
 ---
-<p>Primero instalamos los paquetes necesarios → </p>
+<h1>DEBIAN DHCP SERVER<h1>
+<p>First, install the necessary packages:</p>
 
 <pre>
 <code>sudo apt update
 sudo apt install y isc-dhcp-server</code>
 </pre>
 
-<p>Me meto al fichero de configuración y lo edito</p>
+<br>
+
+<p>Edit the configuration file:</p>
 
 <pre>
 <code>sudo nano /etc/dhcp/dhcpd.conf</code>
 </pre>
 
-<p>Por último ejecuto en el servidor: (IMPRESCINDIBLE)</p>
+<br>
+
+<p>Start the DHCP server on the server (ESSENTIAL):</p>
 
 <pre>
 <code>service isc-dhcp-server start</code>
 </pre>
 
-<p>Si quiero ver su estado:</p>
+<br>
+
+<p>Check the status of the DHCP server:</p>
 
 <pre>
 <code>service isc-dhcp-server status</code>
 </pre>
 
-<p>AHORA EN LOS CLIENTES WINDOWS:</p>
+<br>
 
-<p>Le digo que la dirección la obtenga de forma automática y el DNS le indico la dirección ip del servidor Linux, para futuros ejercicios, para este no es necesario</p>
+<p>NOW ON THE WINDOWS CLIENTS:</p>
 
-<p>En el cliente1 podemos ver como nos asigna la ip 192.168.100.5 , la primera del rango de direcciones que le hemos indicado antes al servidor</p>
+<br>
 
-<p>Al poner en el servidor el comando  service isc-dhcp-server status</p>
+<p>Set the clients to obtain IP addresses automatically and specify the DNS server as the IP address of the Linux server (not necessary for this exercise).</p>
 
-<p>Podemos ver todo el proceso en el que el cliente 1 le pide la IP al servidor.</p>
+<br>
 
-<p>Vemos como el cliente1 es capaz de comunicarse con el servidor con la nueva ip que le han asignado</p>
+<p>In client1, the IP address 192.168.100.5 will be assigned from the previously specified address range.</p>
 
-<p>EN EL CLIENTE 2:</p>
+<br>
 
-<p>Vemos como nos ha asignado la siguiente ip disponible(192.168.100.6)</p>
+<p>When running the command "service isc-dhcp-server status" on the server:</p>
 
-<p>PRUEBAS DE CONECTIVIDAD:</p>
+<br>
 
-<p>CAPTURA ADICIONAL:</p>
+<p>We can see the process where client1 requests the IP address from the server.</p>
 
-<p>Podemos ver como el servicio está corriendo (active)</p>
-<p>El fichero de configuración (flecha morada)</p>
-<p>Y el proceso de comunicación entre los clientes y el servidor, vemos cómo se intercambian paquetes REQUEST entre las ips de los clientes(192.168.100.5, 192.168.100.6) con destino al servidor(192.168.100.1).</p>
+<br>
+
+<p>Client1 is now communicating with the server using the newly assigned IP address.</p>
+
+<br>
+
+<p>ON CLIENT 2:</p>
+
+<br>
+
+<p>Client2 has been assigned the next available IP address (192.168.100.6).</p>
+
+<br>
+
+<p>CONNECTIVITY TESTS:</p>
+
+<br>
+
+<p>ADDITIONAL CAPTURE:</p>
+
+<br>
+
+<p>We can see that the DHCP service is running (active).</p>
+
+<br>
+
+<p>The configuration file is indicated by the purple arrow.</p>
+
+<br>
+
+<p>The communication process between the clients and the server involves exchanging REQUEST packets between the IP addresses of the clients (192.168.100.5, 192.168.100.6) and the server (192.168.100.1) as the destination.</p>
+
+
