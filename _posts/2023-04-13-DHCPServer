@@ -1,0 +1,55 @@
+---
+layout: post
+title: "Deploy DHCP Server Debian"
+subtitle: "Deploying a DHCP Service on Debian"
+date: 2023-01-06 23:45:13 -0400
+background: '/img/posts/05.jpg'
+---
+<p>Primero instalamos los paquetes necesarios → </p>
+
+<pre>
+<code>sudo apt update
+sudo apt install y isc-dhcp-server</code>
+</pre>
+
+<p>Me meto al fichero de configuración y lo edito</p>
+
+<pre>
+<code>sudo nano /etc/dhcp/dhcpd.conf</code>
+</pre>
+
+<p>Por último ejecuto en el servidor: (IMPRESCINDIBLE)</p>
+
+<pre>
+<code>service isc-dhcp-server start</code>
+</pre>
+
+<p>Si quiero ver su estado:</p>
+
+<pre>
+<code>service isc-dhcp-server status</code>
+</pre>
+
+<p>AHORA EN LOS CLIENTES WINDOWS:</p>
+
+<p>Le digo que la dirección la obtenga de forma automática y el DNS le indico la dirección ip del servidor Linux, para futuros ejercicios, para este no es necesario</p>
+
+<p>En el cliente1 podemos ver como nos asigna la ip 192.168.100.5 , la primera del rango de direcciones que le hemos indicado antes al servidor</p>
+
+<p>Al poner en el servidor el comando  service isc-dhcp-server status</p>
+
+<p>Podemos ver todo el proceso en el que el cliente 1 le pide la IP al servidor.</p>
+
+<p>Vemos como el cliente1 es capaz de comunicarse con el servidor con la nueva ip que le han asignado</p>
+
+<p>EN EL CLIENTE 2:</p>
+
+<p>Vemos como nos ha asignado la siguiente ip disponible(192.168.100.6)</p>
+
+<p>PRUEBAS DE CONECTIVIDAD:</p>
+
+<p>CAPTURA ADICIONAL:</p>
+
+<p>Podemos ver como el servicio está corriendo (active)</p>
+<p>El fichero de configuración (flecha morada)</p>
+<p>Y el proceso de comunicación entre los clientes y el servidor, vemos cómo se intercambian paquetes REQUEST entre las ips de los clientes(192.168.100.5, 192.168.100.6) con destino al servidor(192.168.100.1).</p>
